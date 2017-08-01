@@ -13,6 +13,7 @@ open class Annotation: NSObject, MKAnnotation {
     open var title: String?
     open var subtitle: String?
     open var type: ClusterAnnotationType?
+    open var textColor: UIColor?
 }
 
 open class ClusterAnnotation: Annotation {
@@ -51,7 +52,7 @@ open class ClusterAnnotationView: MKAnnotationView {
         label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         label.backgroundColor = .clear
         label.font = .boldSystemFont(ofSize: 13)
-        label.textColor = .white
+        label.textColor = self.textColor
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 2
@@ -78,8 +79,9 @@ open class ClusterAnnotationView: MKAnnotationView {
      
      - Returns: The initialized cluster annotation view.
      */
-    public init(annotation: MKAnnotation?, reuseIdentifier: String?, type: ClusterAnnotationType) {
+    public init(annotation: MKAnnotation?, reuseIdentifier: String?, type: ClusterAnnotationType, textColor: UIColor) {
         self.type = type
+        self.textColor = textColor
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         configure()
     }
