@@ -13,7 +13,6 @@ open class Annotation: NSObject, MKAnnotation {
     open var title: String?
     open var subtitle: String?
     open var type: ClusterAnnotationType?
-    open var textColor: UIColor?
 }
 
 open class ClusterAnnotation: Annotation {
@@ -47,6 +46,9 @@ public enum ClusterAnnotationType {
 
 open class ClusterAnnotationView: MKAnnotationView {
     
+    open var textColor: UIColor?
+    open let type: ClusterAnnotationType
+    
     open lazy var countLabel: UILabel = {
         let label = UILabel()
         label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -66,8 +68,6 @@ open class ClusterAnnotationView: MKAnnotationView {
             configure()
         }
     }
-    
-    open let type: ClusterAnnotationType
     
     /**
      Initializes and returns a new cluster annotation view.
